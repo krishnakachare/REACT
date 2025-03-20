@@ -1,0 +1,1838 @@
+https://www.youtube.com/watch?v=o22KRrxab18
+https://www.appsloveworld.com/reactjs/200/160/react-redux-how-to-dispatch-async-actions-and-update-state
+
+https://codesandbox.io/s/great-jepsen-p7phqv
+---------------------------------------------
+Fetch an API with Loading functionality using Class component:-
+import React from "react";
+export default class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null, isLoaded: false, items: [] };
+  }
+componentDidMount() {
+    fetch("https://fake-hotel-api.herokuapp.com/api/hotels")
+      .then((response) => response.json())
+      .then((result) => { this.setState({  isLoaded: true,  items: result  })},
+             (error) => { this.setState({ isLoaded: true, error })});
+}
+render() {
+    const { error, isLoaded, items } = this.state;
+    const containsErrorMessage = () => { return <div>Error: {error.message}</div> };
+    const isLoading = () => { return <div>Loading...</div> };
+    const results = () => {
+      console.log({ items });
+      return (
+        <ul>
+          {items.map((result) => (
+            <li key={result.id}>
+              <b>Id</b>: {result.id} <br />
+              <b>Name</b>:: {result.name} <br />
+              <b>Description</b>:: {result.description}
+              <hr />
+            </li>
+          ))}
+        </ul>
+      );
+    };
+    if (error) return containsErrorMessage();
+    return !isLoaded ? isLoading() : results();
+  }
+}
+
+----------------------------
+Fetch an API with Loading functionality using Functional component:-
+import React, { useState, useEffect } from "react";
+export default function UsersData() {
+  const [Users, fetchUsers] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    fetch("https://fake-hotel-api.herokuapp.com/api/hotels")
+      .then((res) => res.json())
+      .then((res) => {console.log(res); fetchUsers(res); setIsLoaded(true) },
+            (error) => {setError("Error!!"); setIsLoaded(true) });
+  }, []);
+  const containsErrorMessage = () => { return <div>Error: {error.message}</div>};
+  const isLoading = () => { return <div>Loading...</div>};
+  const results = () => {
+    return (
+      <>
+        <ul>
+          {Users.map((result) => (
+            <li key={result.id}>
+              <b>Id</b>: {result.id} <br />
+              <b>Name</b>:: {result.name} <br />
+              <b>Description</b>:: {result.description} <hr />
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  };
+  if (error) return containsErrorMessage();
+  return !isLoaded ? isLoading() : results();
+}
+----------------------------
+Counter with functional component:-
+import "./styles.css";
+import {useEffect, useState} from "react";
+
+export default function App() {
+  const [state, setState] = useState(0);
+  useEffect(()=>{
+     alert("clicked!");
+  })
+  return (
+    <div className="App">
+      <h5>Counter : {state}</h5>   
+      <button onClick={()=> setState(state+1)}> Increment </button>
+      <button onClick={()=> setState(state-1)}> Decrement </button>
+    </div>
+  );
+}
+-------------------------------------------
+Counter with Class component:-
+import "./styles.css";
+import React from "react";
+
+export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      count :0
+    }
+  }
+  increment =()=>{
+     this.setState({count: this.state.count+1})
+  }
+  decrement=()=>{
+    this.setState({count: this.state.count-1})
+  }
+  render(){
+  return (
+    <div className="App">
+      <h5>Counter : {this.state.count}</h5>   
+      <button onClick={this.increment}> Increment </button>
+      <button onClick={this.decrement}> Decrement </button>
+    </div>
+  );
+}
+}
+=======================================================================================================================================================================
+To Do application with Class based components:
+import React from "react";
+import "./styles.css";
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { items: [], text: "" };
+  }
+  handleChange = (e) => {
+    this.setState({ text: e.target.value });
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.text.length === 0) {
+      return;
+    }
+    this.setState((state) => ({
+      items: state.items.concat({ text: this.state.text }),
+      text: ""
+    }));
+  };
+  handleCancel = (e) => {
+    e.preventDefault();
+    this.setState((state) => ({
+      items: state.items.splice(1),
+      text: ""
+    }));
+  };
+  render() {
+    return (
+      <div>
+        <h3>ToDo Application</h3>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="new-todo">What needs to be done?</label>
+          <input id="new-todo" onChange={this.handleChange} value={this.state.text}  />
+          <button>Add #{this.state.items.length + 1}</button>
+          <ol>
+            {this.state.items.map((item) => (
+              <li key={item.id}>
+                {item.text}
+                <button onClick={this.handleCancel}>Cancel</button>
+              </li>
+            ))}
+          </ol>
+        </form>
+      </div>
+    );
+  }
+}
+export default App;
+------------------------------------------
+Todo with functional component:
+import { useState } from "react";
+
+export default function App() {
+  const [item, updateItem] = useState(["Read"]);
+  const [text, updateText] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (text.length === 0 || !text) return;
+    updateText("");
+    updateItem([...item, text]);
+  };
+  const handleCancel = (index) => {
+    const newTodos = [...item];
+    newTodos.splice(index, 1);
+    updateItem(newTodos);
+  };
+  return (
+    <div>
+      <h1>To Do Application </h1>
+      <label>Add task? </label>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => updateText(e.target.value)}
+      />
+      <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      <ol>
+        {item.map((data, index) => (
+          <li key={data.id}>
+            {data}
+            <button onClick={() => handleCancel(index)}>Cancel</button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+========================================================================================================================================================================
+Pass data from Child to Parents:
+import { useState } from "react";
+
+//parent Component
+export default function App() {
+  const [count, setCount] = useState(0); //default state is zero
+  //callback function which will get data from child component
+  const increment = () => {
+    setCount((item) => item + 1); //or count + 1 //update the count
+  };
+  return (
+    <div>
+      {/* Passing callabck function as a props to the child component*/}
+      <ChildComponent onClick={increment} />
+      <h2>Count : {count}</h2>
+    </div>
+  );
+}
+
+//child Component //Destructuring from props
+const ChildComponent = ({ onClick }) => {
+  //it call the parent's callback function using props
+  return <button onClick={onClick}>Click</button>;
+};
+===========================================================================
+import { useState } from "react";
+
+export default function App() {
+  const [text, updateText] = useState("priya");
+  const change = (e) => {
+    updateText(e.target.value);
+  };
+  return (
+    <div>
+      <ChildComponent data={change} />
+      <h2>Inputs : {text}</h2>
+    </div>
+  );
+}
+
+const ChildComponent = ({ data }) => {
+  return <input onChange={data} />;
+};
+===========================================================================================================================================================================
+Auto counter without button:
+import { useEffect, useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [state, updateState] = useState(0);
+
+  useEffect(() => {
+    let interval = setInterval(() => {
+      updateState(state + 1);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
+  return (
+    <div className="App">
+      <h1>{state}</h1>
+    </div>
+  );
+}
+========================================================================================================================================================================
+------------------- Debounce and Throttle ---------------------------
+
+export default function App() {
+  const handleChange = (e) => {
+    console.log("Debouncing...");
+  };
+  
+  //every time the mouse moved this function will be invoked
+  const handleMouseMove = (e) => {
+    console.log("throttling...");
+  };
+
+  //debounce function
+  function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), delay);
+    };
+  }
+  //throttle function
+  function throttle(func, delay) {
+    let run = false;
+    return function (...args) {
+      if (!run) {
+        func(...args);
+        run = true;
+        setTimeout(() => (run = false), delay);
+      }
+    };
+  }
+
+  //event listener to track the movement of the mouse
+  window.addEventListener("mousemove", throttle(handleMouseMove, 2000));
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p> Search </p>
+        <input type="text" onChange={debounce(handleChange, 500)} />
+      </header>
+    </div>
+  );
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import { useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [state, setState] = useState("");
+  const handleText = (e) => {
+    setState(e.target.value);
+  };
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <input type="text" onChange={handleText} />
+      <h3>{state > 5 ? "greater than 5" : null} </h3>
+    </div>
+  );
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import "./styles.css";
+import Details from "./Details";
+import {useState, useEffect} from "react";
+export default function App() {
+  const [state, updateState] = useState([]);
+  const [flag, updateFlag] = useState(true);
+  const [res, setRes] = useState([]);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/photos")
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response);
+        updateState(response);
+      });
+  }, []);
+  const handleClick = (res) => {
+    setRes(res);
+    updateFlag(!flag);
+  };
+  return (
+    <div className="App">
+      <ul>
+        {flag &&
+          state
+            .filter((item) => {
+              return [3, 6, 9, 13, 67].includes(item.id);
+            })
+            .map((result) => {
+              return (
+                <>
+                  <li key={result.id}>
+                    <h5
+                      onClick={() => {
+                        handleClick(result);
+                      }}
+                    >
+                      {" "}
+                      Id:{result.id}{" "}
+                    </h5>
+                    <a href={result.url}> Link: {result.url} </a>
+                  </li>
+                  {/* {!!flag ? <Details props={result} /> : null} */}
+                </>
+              );
+            })}
+        {!flag && res && <Details props={res} />}
+      </ul>
+    </div>
+  );
+}
+
+------------------------------------
+
+export default function Details({ props }) {
+  //return <h1>Details, {props}</h1>;
+  return (
+    <div>
+      <p>
+        id: {props.id} <br />
+        albumId : {props.albumId} <br />
+        title : {props.title} <br />
+        url : {props.url} <br />
+        thumbnailUrl : {props.thumbnailUrl} <br />
+      </p>
+      <hr />
+    </div>
+  );
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+React router dom:
+import React from "react";
+
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+
+import About from "./components/About";
+import Home from "./components/Home";
+import Topics from "./components/Topics";
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Link to="/">Home</Link> <br />
+        <Link to="/about">About</Link> <br />
+        <Link to="/topics">Topics</Link> <br />
+        <hr />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/topics" element={<Topics />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+-------------------------
+import React from "react";
+
+const Topics = () => (
+  <div>
+    <h2>Topics</h2>
+  </div>
+);
+
+export default Topics;
+
+////////////////////////////////////////
+ANOTHER WAY
+import React from "react";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import About from "./components/About";
+import Home from "./components/Home";
+import Topics from "./components/Topics";
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Link to="/">Home</Link> <br />
+        <Link to="/about">About</Link> <br />
+        <Link to="/topics">Topics</Link> <br />
+        <hr />
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/topics" component={Topics} />
+      </div>
+    </Router>
+  );
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Timer using setInterval :
+import { useEffect, useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [state, setState] = useState(10);
+  const ResetClick = () => {
+    setState(10);
+  };
+
+  useEffect(() => {
+    let id = setInterval(() => {
+      if (state > 0) {
+        setState((state) => state - 1);
+      }
+    }, 1000);
+    return () => clearInterval(id);
+  }, [state]);
+
+  return (
+    <div className="App">
+      <h1> Decreasing Counter </h1>
+      <button onClick={ResetClick}>Reset Counter</button>
+      <h1> {state} </h1>
+    </div>
+  );
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+https://codesandbox.io/s/suspicious-shamir-3ninm7?file=/src/App.js
+Interviewer : Complete the below tasks using Reactjs.
+
+
+
+## TASK 1:
+
+
+
+- use the list users API endpoint.
+
+- available at "https://reqres.in/api/users?page=1"
+
+  and render the user list in the response.
+
+- can use the table component from components folder.
+
+
+
+## TASK 2:
+
+
+
+- add functionality to `Delete Row by Id` button
+
+- which when clicked deletes a row
+
+  according to the Id user inputs
+
+  Hint: You can use the browser popup prompt to input ID
+
+
+
+## TASK 3:
+
+
+
+- convert API call to a redux thunk call and store
+
+- the users list as a state variable in the redux store
+---------------------------------------------------------------
+import { useStore } from "react-redux";
+import "./Table.css";
+
+const Table = (props) => {
+  console.log("props", props.props.data);
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.props.data?.map((item) => {
+            return (
+              <tr>
+                <td>{item.id} </td>
+                <td>{item.first_name}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      )
+    </div>
+  );
+};
+
+export default Table;
+--------------------------------------------------------
+import { useEffect, useState } from "react";
+import Table from "./Components/Table";
+export default function App() {
+  const [user, setUser] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch("https://reqres.in/api/users?page=1")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setUser(res);
+        setIsLoaded(true);
+        // (err)=>{ setError("Error!!"); setIsLoaded(true)}
+      });
+  }, []);
+
+  const handleClick = (id) => {
+    setUser((user) => {
+      return user?.filter((data) => data.id !== id);
+    });
+  };
+  return (
+    <div className="App">
+      <h1>Table goes here</h1>
+      <button onClick={() => handleClick(1)}>Delete Row by Id</button>
+      <Table props={user} />
+    </div>
+  );
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+React with Redux- counter and update name: using functional component
+https://codesandbox.io/s/react-redux-hooks-counter-app-forked-vx6jux?file=/src/components/Counter.js
+
+index.js:
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>,
+  rootElement
+);
+----------------------------------------------------
+App.js:
+import "./styles.css";
+import Counter from "./components/Counter";
+
+export default function App() {
+  return (
+    <div className="App">
+      <h2>React-Redux-Hooks Counter app</h2>
+      <Counter />
+    </div>
+  );
+}
+-----------------------------------------------------
+store/index.js:
+import { createStore } from "redux";
+import reducers from "../reducers";
+
+const store = createStore(reducers); //reducer
+console.log("store", store);
+export default store;
+----------------------------------------------------
+reducers/index.js:
+import { combineReducers } from "redux";
+import counter from "./counter";
+
+const reducers = combineReducers({
+  counter
+});
+
+export default reducers;
+-----------------------------------------------------
+reducers/counter.js:
+import {
+  INCREMENT_COUNTER,
+  DECREMENT_COUNTER,
+  SET_COUNTER,
+  RESET,
+  UPDATENAME
+} from "../actions/counter";
+
+const initialState = {
+  count: 10,
+  name: "priya"
+};
+
+const counter = (state = initialState, action) => { //initiate state and action
+  switch (action.type) {
+    case SET_COUNTER:
+      return {
+        ...state,
+        count: action.payload
+      };
+    case INCREMENT_COUNTER:
+      return {
+        ...state,
+        count: state.count + 1
+      };
+    case DECREMENT_COUNTER:
+      return {
+        ...state,
+        count: state.count - 1
+      };
+    case RESET:
+      return {
+        ...state,
+        count: 0
+      };
+    case UPDATENAME:
+      return {
+        ...state,
+        name: "Supriya"
+      };
+    default:
+      return state;
+  }
+};
+
+export default counter;
+---------------------------------------------------------------------
+action/counter.js:
+export const SET_COUNTER = "SET_COUNTER";
+export const INCREMENT_COUNTER = "INCREMENT_COUNTER";
+export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
+export const RESET = "RESET";
+export const UPDATENAME = "UPDATENAME";
+
+export const setCounter = (counter) => ({
+  type: SET_COUNTER,
+  payload: counter
+});
+
+export const incrementCounter = () => ({
+  type: INCREMENT_COUNTER
+});
+
+export const decrementCounter = () => ({
+  type: DECREMENT_COUNTER
+});
+
+export const resetCounter = () => ({
+  type: RESET
+});
+
+export const updateName = () => ({
+  type: UPDATENAME
+});
+------------------------------------------------------------
+Components/counter:
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementCounter,
+  decrementCounter,
+  resetCounter,
+  updateName
+} from "../actions/counter";
+
+const Counter = () => {
+  const count = useSelector((state) => state.counter.count); //updated state from store
+  const name = useSelector((name) => name.counter.name); //reducername.state
+  const dispatch = useDispatch();
+
+  const handleIncrement = () => {
+    dispatch(incrementCounter());
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrementCounter());
+  };
+
+  const handleReset = () => {
+    dispatch(resetCounter());
+  };
+
+  const changeName = () => {
+    dispatch(updateName());
+  };
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+
+      <div>
+        <button onClick={handleIncrement}>Increment</button>
+        <button onClick={handleDecrement}>Decrement</button>
+        <button onClick={handleReset}>Reset</button>
+      </div>
+      <hr />
+      <h1>Name : {name}</h1>
+      <button onClick={changeName}>Change Name</button>
+    </div>
+  );
+};
+
+export default Counter;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CRUD Application : https://codesandbox.io/s/immutable-voice-8wn67r?file=/src/App.js
+App.js:
+import { useState } from "react";
+import AddUserForm from "./form/AddUserForm";
+import EditUserForm from "./form/EditUserForm";
+import UserTable from "./table/UserTable";
+
+export default function App() {
+  const userData = [
+    { id: 1, name: "jack", username: "Jack_abc" },
+    { id: 2, name: "mar", username: "mar_abc" },
+    { id: 3, name: "kerr", username: "kerr_abc" }
+  ];
+  const [users, setUsers] = useState(userData);
+
+  const addUser = (user) => {
+    user.id = users.length + 1;
+    setUsers([...users, user]);
+  };
+  const deleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  const initialForm = { id: null, name: "", username: "" };
+  const [currentUser, setCurrentUser] = useState(initialForm);
+  const [editing, setEditing] = useState(false);
+  const updateUser = (id, updateUser) => {
+    setEditing(false);
+    setUsers(users.map((user) => (user.id === id ? updateUser : user)));
+  };
+  const editRow = (user) => {
+    setEditing(true);
+    setCurrentUser({ id: user.id, name: user.name, username: user.username });
+  };
+  return (
+    <div className="App">
+      <h1> CRUD Application </h1>
+      <div>
+        <div>
+          {editing ? (
+            <div>
+              <h5>Edit</h5>
+              <EditUserForm
+                editing={editing}
+                setEditing={setEditing}
+                currentUser={currentUser}
+                updateUser={updateUser}
+              />
+            </div>
+          ) : (
+            <div>
+              <h5>Add</h5>
+              <AddUserForm addUser={addUser} />
+            </div>
+          )}
+        </div>
+        <div>
+          <h3> View User </h3>
+          <UserTable users={users} deleteUser={deleteUser} editRow={editRow} />
+        </div>
+      </div>
+    </div>
+  );
+}
+--------------------------------------------------------
+UserTable:
+const UserTable = (props) => {
+  console.log(props);
+  return (
+    <table>
+      <thead>
+        <th> Id </th>
+        <th> UserName </th>
+        <th> Action </th>
+      </thead>
+      <tbody>
+        {props.users?.length > 0 ? (
+          props.users.map((user) => {
+            return (
+              <tr key={user.id}>
+                <td> {user.id} </td>
+                <td> {user.username} </td>
+                <td>
+                  <button onClick={() => props.editRow(user)}>Edit</button>
+                  <button onClick={() => props.deleteUser(user.id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            );
+          })
+        ) : (
+          <tr>
+            <td>No User </td>{" "}
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
+};
+
+export default UserTable;
+-------------------------------------------------
+import { useState } from "react";
+
+const AddUserForm = (props) => {
+  const initialFormState = { id: null, name: "", username: "" };
+  const [user, setUser] = useState(initialFormState);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        //  if (!user.name || user.username) return;
+        props.addUser(user);
+        setUser(initialFormState);
+      }}
+    >
+      <label> Name </label>
+      <input
+        type="text"
+        name="name"
+        value={user.name}
+        onChange={handleInputChange}
+      />
+      <br /> <label> UserName </label>
+      <input
+        type="text"
+        name="username"
+        value={user.username}
+        onChange={handleInputChange}
+      />
+      <br />
+      <button> Add User </button>
+    </form>
+  );
+};
+
+export default AddUserForm;
+-----------------------------------------------------
+EditUser:
+import { useEffect, useState } from "react";
+
+const EditUserForm = (props) => {
+  const [user, setUser] = useState(props.currentUser);
+  useEffect(() => {
+    setUser(props.currentUser);
+  }, [props]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+    console.log(user);
+  };
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        props.updateUser(user.id, user);
+      }}
+    >
+      <label> Name </label>
+      <input
+        type="text"
+        name="name"
+        value={user.name}
+        onChange={handleInputChange}
+      />
+      <br /> <label> UserName </label>
+      <input
+        type="text"
+        name="username"
+        value={user.username}
+        onChange={handleInputChange}
+      />
+      <br />
+      <button> Update User </button>
+      <button onClick={() => props.setEditing(false)}> cancel </button>
+    </form>
+  );
+};
+
+export default EditUserForm;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Tic Tak Toe : https://codesandbox.io/s/infallible-burnell-7z9y6n?file=/src/utils/Winner.js:0-420
+import { useState } from "react";
+import { calculateWinner } from "../utils/Winner";
+
+const Box = () => {
+  const [data, setData] = useState(Array(9).fill(null));
+
+  function nextPlayer() {
+    return data.filter(Boolean).length % 2 === 0 ? "X" : "O";
+  }
+
+  const nextPlayerPlaying = nextPlayer();
+  const winner = calculateWinner(data);
+
+  function squareSelected(square) {
+    if (winner) return;
+    const temp = [...data];
+    temp[square] = nextPlayerPlaying;
+    setData(temp);
+  }
+
+  function resetGame() {
+    setData(Array(9).fill(null));
+  }
+
+  function status() {
+    return winner
+      ? `Winner ${winner} `
+      : data.every(Boolean)
+      ? `Start game`
+      : `Next Player : ${nextPlayerPlaying}`;
+  }
+
+  function squareData(square) {
+    return (
+      <div className="col" onClick={() => squareSelected(square)}>
+        {data[square]}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="status">{`${status()}`}</div>
+      <div className="box">
+        <div className="row">
+          {squareData(0)}
+          {squareData(1)}
+          {squareData(2)}
+        </div>
+        <div className="row">
+          {squareData(3)}
+          {squareData(4)}
+          {squareData(5)}
+        </div>
+        <div className="row">
+          {squareData(6)}
+          {squareData(7)}
+          {squareData(8)}
+        </div>
+      </div>
+      <button onClick={resetGame}> Reset game</button>
+    </>
+  );
+};
+
+export default Box;
+---------------------------------------
+export function calculateWinner(data) {
+  const ans = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8]
+  ];
+
+  for (let i = 0; i < ans.length; i++) {
+    const [x, y, z] = ans[i];
+    // console.log(data[x], data[y], data[z], "jk");
+
+    if (data[x] && data[x] === data[y] && data[y] === data[z]) {
+      return data[x];
+    }
+  }
+  return null;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Count Down Timer in hour in Vanilla js: https://codesandbox.io/s/zealous-banach-0unqd0?file=/index.html
+Index.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Countdown Timer</title>
+  </head>
+  <body>
+    <div class="container">
+      <span class="container__title">Countdown Timer</span>
+
+      <div class="container__labels">
+        <p class="container__labels--label">Hours</p>
+        <p class="container__labels--label">Minutes</p>
+        <p class="container__labels--label">Seconds</p>
+      </div>
+
+      <div class="container__inputs">
+        <input
+          type="number"
+          maxlength="2"
+          oninput="this.value=this.value.slice(0,this.maxLength)"
+          placeholder="00"
+          class="container__inputs--time hour"
+        />
+        <p class="container__inputs--colon">:</p>
+        <input
+          type="number"
+          maxlength="2"
+          oninput="this.value=this.value.slice(0,this.maxLength)"
+          placeholder="00"
+          class="container__inputs--time minute"
+        />
+        <p class="container__inputs--colon">:</p>
+        <input
+          type="number"
+          maxlength="2"
+          oninput="this.value=this.value.slice(0,this.maxLength)"
+          placeholder="00"
+          class="container__inputs--time sec"
+        />
+      </div>
+
+      <div class="container__btns">
+        <button class="btn start">Start</button>
+        <button class="btn stop">Pause</button>
+        <button class="btn reset">Reset</button>
+      </div>
+    </div>
+    <script src="/index.js"></script>
+  </body>
+</html>
+
+
+-------------
+index.js
+(function () {
+  var hour = document.querySelector(".hour");
+  var min = document.querySelector(".minute");
+  var sec = document.querySelector(".sec");
+  var startBtn = document.querySelector(".start");
+  var stopBtn = document.querySelector(".stop");
+  var resetBtn = document.querySelector(".reset");
+
+  var countdownTimer = null;
+
+  // Start Timer Button - START
+  startBtn.addEventListener("click", function () {
+    if (hour.value === 0 && min.value === 0 && sec.value === 0) return;
+
+    function startInterval() {
+      startBtn.style.display = "none";
+      stopBtn.style.display = "initial";
+
+      countdownTimer = setInterval(function () {
+        timer();
+      }, 1000);
+    }
+    startInterval();
+  });
+  // Start Timer Button - END
+
+  function timer() {
+    // Formatting the time - START
+    if (sec.value > 60) {
+      min.value++;
+      sec.value = parseInt(sec.value) - 59;
+    }
+    if (min.value > 60) {
+      hour.value++;
+      min.value = parseInt(min.value) - 60;
+    }
+    min.value = min.value > 60 ? 60 : min.value;
+    // Formatting the time - END
+
+    // Updating the Time - START
+    if (hour.value == 0 && min.value == 0 && sec.value == 0) {
+      hour.value = "";
+      min.value = "";
+      sec.value = "";
+      stopInterval();
+    } else if (sec.value != 0) {
+      sec.value = `${sec.value <= 10 ? "0" : ""}${sec.value - 1}`;
+    } else if (min.value != 0 && sec.value == 0) {
+      sec.value = 59;
+      min.value = `${min.value <= 10 ? "0" : ""}${min.value - 1}`;
+    } else if (hour.value != 0 && min.value == 0) {
+      min.value = 60;
+      hour.value = `${hour.value <= 10 ? "0" : ""}${hour.value - 1}`;
+    }
+    return;
+    // Updating the Time - END
+  }
+
+  // Stop Interval Logic - START
+  function stopInterval(state) {
+    startBtn.innerHTML = state === "pause" ? "Continue" : "Start";
+
+    stopBtn.style.display = "none";
+    startBtn.style.display = "initial";
+    clearInterval(countdownTimer);
+  }
+  // Stop Interval Logic - END
+
+  // Stop Timer Button - START
+  stopBtn.addEventListener("click", function () {
+    stopInterval("pause");
+  });
+  // Start Timer Button - END
+
+  // Reset Timer Button - START
+  resetBtn.addEventListener("click", function () {
+    hour.value = "";
+    min.value = "";
+    sec.value = "";
+
+    stopInterval();
+  });
+  // Reset Timer Button - END
+})();
+
+
+--------------
+index.css
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-family: sans-serif;
+}
+
+.container__title {
+  padding: 10px 20px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.container {
+  height: 200px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container__labels,
+.container__inputs,
+.container__btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container__btns {
+  margin-top: 20px;
+}
+
+.container__labels--label {
+  width: 20%;
+  text-align: center;
+  font-size: 30px;
+  padding: 5px 10px;
+}
+
+.container__inputs--time {
+  justify-self: center;
+  align-self: center;
+  border: none;
+  font-size: 50px;
+  width: 90px;
+  height: 50px;
+}
+
+.container__inputs--colon {
+  justify-self: center;
+  align-self: center;
+  font-size: 30px;
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.btn {
+  width: 48%;
+  height: 50px;
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+input {
+  text-align: center;
+  outline: none;
+}
+
+.start {
+  background-color: green;
+}
+
+.stop {
+  display: none;
+  background-color: orange;
+}
+
+.reset {
+  background-color: orangered;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+File Explorer :
+App.js:
+import { useState } from "react";
+import Folder from "./Folder";
+import useTraverseTree from "./useTraveseTree";
+import "./styles.css";
+import explorer from "./folderData";
+
+export default function App() {
+  const [explorerData, setExplorerData] = useState(explorer);
+
+  const { insertNode } = useTraverseTree();
+
+  const handleInsertNode = (folderId, item, isFolder) => {
+    const finalTree = insertNode(explorerData, folderId, item, isFolder);
+    setExplorerData(finalTree);
+  };
+
+  return (
+    <div className="App">
+      <Folder handleInsertNode={handleInsertNode} explorer={explorerData} />
+    </div>
+  );
+}
+
+----------
+Folder.js
+import { useState } from "react";
+
+function Folder({ handleInsertNode = () => {}, explorer }) {
+  const [expand, setExpand] = useState(false);
+  const [showInput, setShowInput] = useState({
+    visible: false,
+    isFolder: false
+  });
+
+  const handleNewFolder = (e, isFolder) => {
+    e.stopPropagation();
+    setExpand(true);
+    setShowInput({
+      visible: true,
+      isFolder
+    });
+  };
+
+  const onAddFolder = (e) => {
+    if (e.keyCode === 13 && e.target.value) {
+      handleInsertNode(explorer.id, e.target.value, showInput.isFolder);
+
+      setShowInput({ ...showInput, visible: false });
+    }
+  };
+
+  if (explorer.isFolder) {
+    return (
+      <div style={{ marginTop: 5 }}>
+        <div onClick={() => setExpand(!expand)} className="folder">
+          <span>📁 {explorer.name}</span>
+
+          <div>
+            <button onClick={(e) => handleNewFolder(e, true)}>Folder +</button>
+            <button onClick={(e) => handleNewFolder(e, false)}>File +</button>
+          </div>
+        </div>
+
+        <div style={{ display: expand ? "block" : "none", paddingLeft: 25 }}>
+          {showInput.visible && (
+            <div className="inputContainer">
+              <span>{showInput.isFolder ? "📁" : "📄"}</span>
+              <input
+                type="text"
+                className="inputContainer__input"
+                autoFocus
+                onKeyDown={onAddFolder}
+                onBlur={() => setShowInput({ ...showInput, visible: false })}
+              />
+            </div>
+          )}
+
+          {explorer.items.map((exp) => {
+            return (
+              <Folder
+                handleInsertNode={handleInsertNode}
+                key={exp.name}
+                explorer={exp}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+  } else {
+    return <span className="file">📄 {explorer.name}</span>;
+  }
+}
+
+export default Folder;
+
+
+----------
+folderData.js
+const explorer = {
+  id: "1",
+  name: "root",
+  isFolder: true,
+  items: [
+    {
+      id: "2",
+      name: "public",
+      isFolder: true,
+      items: [
+        {
+          id: "3",
+          name: "public nested 1",
+          isFolder: true,
+          items: [
+            {
+              id: "4",
+              name: "index.html",
+              isFolder: false,
+              items: []
+            },
+            {
+              id: "5",
+              name: "hello.html",
+              isFolder: false,
+              items: []
+            }
+          ]
+        },
+        {
+          id: "6",
+          name: "public_nested_file",
+          isFolder: false,
+          items: []
+        }
+      ]
+    },
+    {
+      id: "7",
+      name: "src",
+      isFolder: true,
+      items: [
+        {
+          id: "8",
+          name: "App.js",
+          isFolder: false,
+          items: []
+        },
+        {
+          id: "9",
+          name: "Index.js",
+          isFolder: false,
+          items: []
+        },
+        {
+          id: "10",
+          name: "styles.css",
+          isFolder: false,
+          items: []
+        }
+      ]
+    },
+    {
+      id: "11",
+      name: "package.json",
+      isFolder: false,
+      items: []
+    }
+  ]
+};
+
+export default explorer;
+
+
+-----------
+useTraverseTree.js
+const useTraverseTree = () => {
+  // Add a file or folder in tree
+  // Can be optimised using Dynamic Programming
+  const insertNode = function (tree, folderId, item, isFolder) {
+    if (tree.id === folderId && tree.isFolder) {
+      tree.items.unshift({
+        name: item,
+        isFolder: isFolder,
+        items: []
+      });
+
+      return tree;
+    }
+
+    let latestNode = [];
+    latestNode = tree.items.map((ob) => {
+      return insertNode(ob, folderId, item, isFolder);
+    });
+
+    return { ...tree, items: latestNode };
+  };
+
+  const deleteNode = () => {}; // Do it Yourself
+
+  const renameNode = () => {}; // Do it Yourself
+
+  return { insertNode, deleteNode, renameNode };
+};
+
+export default useTraverseTree;
+
+
+----------
+style.css
+.folder {
+  margin-top: 6px;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.inputContainer > span {
+  margin-top: 5px;
+}
+
+.inputContainer__input {
+  margin: 6px 0 0px 0;
+  padding: 5px;
+  display: flex;
+  border: 1px solid lightgray;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.folder > span {
+  margin: 0 5px;
+}
+
+.folder > div > button {
+  font-size: 15px;
+  background-color: white;
+}
+
+.file {
+  margin-top: 5px;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Calendar using vanilla js : https://codesandbox.io/s/suspicious-yonath-0211rp?file=/index.html:662-668
+
+index.html:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar - DOM Challenge</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./index.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="controls">
+        <button class="prev-btn">&#60; Prev</button>
+        <select id="month-select" name="month"></select>
+        <select id="year-select" name="year"></select>
+        <button class="next-btn">Next &#62;</button>
+      </div>
+      <button id="today">Today</button>
+      <div class="calendar">
+        <div class="days"></div>
+        <div class="weeks"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+-----
+css:
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.days {
+  display: flex;
+}
+
+.day,
+.week {
+  border: 1px solid black;
+  padding: 10px;
+  width: 35px;
+  align-items: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.weeks {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+select {
+  height: 30px;
+  width: 100px;
+}
+
+.today {
+  background-color: black;
+  color: white;
+}
+
+-----
+index.js
+const days = document.querySelector(".days");
+const weeks = document.querySelector(".weeks");
+const prev = document.querySelector(".prev-btn");
+const next = document.querySelector(".next-btn");
+
+const daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const monthsName = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+];
+
+let selectedMonth = new Date().getMonth() + 1;
+let selectedYear = new Date().getFullYear();
+function generateLayout() {
+  for (let i = 0; i < daysName.length; i++) {
+    let box = document.createElement("div");
+    box.innerText = daysName[i];
+    box.classList.add("day");
+    days.appendChild(box);
+  }
+}
+generateLayout();
+
+function generateCalendar(selectedMonth, selectedYear) {
+  console.log("generate - ", selectedMonth, selectedYear);
+  weeks.innerHTML = "";
+  // detail.innerText = `${monthsName[selectedMonth - 1]}, ${selectedYear}`;
+  let noOfDays = new Date(selectedYear, selectedMonth, 0).getDate();
+  let firstDay = new Date(selectedYear, selectedMonth - 1, 1).getDay();
+  let filledDays = -(firstDay - 1);
+  while (filledDays < noOfDays) {
+    generateRow();
+  }
+  function generateRow() {
+    const week = document.createElement("div");
+    week.style.display = "flex";
+    for (let i = 0; i < daysName.length; i++) {
+      let box = document.createElement("div");
+      box.classList.add("week");
+      week.appendChild(box);
+      if (filledDays <= noOfDays) {
+        if (filledDays > 0) {
+          box.innerText = filledDays;
+          const currentMonth = new Date().getMonth() + 1;
+          const currentYear = new Date().getFullYear();
+
+          if (currentMonth === selectedMonth && currentYear === selectedYear) {
+            const currentData = new Date().getDate();
+            if (filledDays === currentData) {
+              box.classList.add("today");
+            }
+          }
+        }
+        filledDays++;
+      }
+    }
+    weeks.appendChild(week);
+  }
+}
+generateCalendar(selectedMonth, selectedYear);
+
+prev.addEventListener("click", () => {
+  selectedMonth--;
+  if (selectedMonth === 0) {
+    selectedYear--;
+    selectedMonth = 12;
+  }
+  generateCalendar(selectedMonth, selectedYear);
+  monthSelect.value = selectedMonth - 1;
+  yearSelect.value = selectedYear;
+});
+
+next.addEventListener("click", () => {
+  selectedMonth++;
+  if (selectedMonth === 13) {
+    selectedYear++;
+    selectedMonth = 1;
+  }
+  generateCalendar(selectedMonth, selectedYear);
+  monthSelect.value = selectedMonth - 1;
+  yearSelect.value = selectedYear;
+});
+
+const monthSelect = document.querySelector("#month-select");
+
+monthSelect.addEventListener("change", (e) => {
+  console.log(e.target.value);
+  selectedMonth = +e.target.value + 1;
+  generateCalendar(selectedMonth, selectedYear);
+});
+
+function generateMonthDropdown() {
+  const currentMonth = new Date().getMonth() + 1;
+  for (let i = 0; i < monthsName.length; i++) {
+    const month = monthsName[i];
+    const option = document.createElement("option");
+    option.setAttribute("value", i);
+    option.innerHTML = month;
+    if (i === currentMonth - 1) {
+      console.log(monthsName[i]);
+      option.setAttribute("selected", true);
+    }
+    monthSelect.appendChild(option);
+  }
+}
+generateMonthDropdown();
+
+const yearSelect = document.querySelector("#year-select");
+
+yearSelect.addEventListener("change", (e) => {
+  console.log(e.target.value);
+  selectedYear = e.target.value;
+  generateCalendar(selectedMonth, selectedYear);
+});
+
+function generateYearDropdown() {
+  const currentYear = new Date().getFullYear();
+  for (let i = 1990; i <= 2030; i++) {
+    const option = document.createElement("option");
+    option.setAttribute("value", i);
+    option.innerHTML = i;
+    if (i === currentYear) {
+      option.setAttribute("selected", true);
+    }
+    yearSelect.appendChild(option);
+  }
+}
+generateYearDropdown();
+
+const todayBtn = document.querySelector("#today");
+todayBtn.addEventListener("click", () => {
+  selectedYear = new Date().getFullYear();
+  selectedMonth = new Date().getMonth() + 1;
+  monthSelect.value = selectedMonth - 1;
+  yearSelect.value = selectedYear;
+
+  generateCalendar(selectedMonth, selectedYear);
+});
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Topics:- 
+HOC and its implementation
+Memo Function
+Life Cycle methods
+props vs state
+Class vs Functional Component
+Lazy Loading
+Virtal vs Real DOM
+JSX
+Virtal DOM process
+Error Boundaries
+Render
+Redux
+Hooks
+useState
+useEffect
+useContext
+propdrilling
+action creator
+prop passing parent to child and vice-versa
+update state
