@@ -1,0 +1,474 @@
+
+MERN stack Realtime project 
+===========================
+
+2 months - 1:30h
+
+
+Prerequisites to join this course
+
+a. Basic idea on HTML, CSS, JavaScript 
+c. Basic idea on React
+d. Basic idea on node 
+
+Content:
+
+1. Disucss important Concepts  in HTML,CSS, JavaScript with interview questions.
+	
+2. Disucss important Concepts in react to develop react project(front end) 
+	
+3. Discuss Required  node js (REST & GraphQL) Concepts for Backend Development
+
+4. Discuss about Database MongoDB
+	
+5. Project Documentation , Figma Design document
+
+6. Project Setup(React, node js, MongoDB)
+
+6. Real-Time Project
+	a. React as frontend
+	b. Node with express as backedn
+	c. JIRA - Agile Methodolofy
+	d. GIT - version control
+
+7. Testing(JEST and RTL , PlayWright)
+
+8. Deployment
+	a. AWS, Vercel
+
+9. Performance
+
+10. Security
+
+
+=========================================
+Daily Base Activities , Agile methodology
+=========================================
+
+Start Sprint- 2 weeks ( total 4 sprints)
+
+Create Jira account
+Create github account
+
+HTML, CSS: 
+==========
+
+Day 1
+        HTML Interview Questions
+	Design static Web Page using HTML and CSS
+        Assignment
+	Prepare own Notes
+	Write HTML test
+
+Day 2 
+        CSS Interview Questions (apply styles, boxmodel, selectors)
+	Make look and feel that above above web page
+        Assignment
+	Prepare own Notes
+	Write CSS test
+
+Day 3 
+        CSS Interview Questions (positions, flex, grid, media queries)
+	Deploy above page  - Godaddy
+        Assignment
+	Prepare own Notes
+	Write HTML, CSS , Bootstrap test
+
+Day 4:
+	Question and Answers on HTML and CSS
+        Assignment
+	Notes
+	Write HTML, CSS , Bootstrap test
+
+
+JavaScript
+==========
+
+Day 5:
+
+	Variable and function 
+	Programs
+	Interview Questions
+	Assignment - JS program -1(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Dat 6:
+	document, window, getReference, events, eventbubbling, eventCapturing
+	Programs
+	Interview Questions
+	Assignment - JS program -2(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 7
+	setTimeout, setInterval, clearTimeout, clearInterval,Debouncing, Throttling
+	Programs
+	Interview Questions
+	Assignment - JS program -3(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 8
+	OOPS(class, object, inheritance, overloading, overriding, abstration, 	encapslation)
+        Programs
+	Interview Questions
+	Assignment - JS program -4(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+        
+
+Day 9
+	JSON,String methods
+        Programs
+	Interview Questions
+	Assignment - JS program -5(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+      
+
+
+Day 10
+	Array methods
+        Programs
+	Interview Questions
+	Assignment - JS program -6(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+
+Day 11 
+	Browser Storages - localStorage, sessionStorage , Cookies
+	Programs
+	Interview Questions
+	Assignment - JS program -7(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 12
+        Exception Handling
+	Programs
+	Interview Questions
+	Assignment - JS program -8(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test	
+
+Day 13
+	Promises,callbacks
+	Programs
+	Interview Questions
+	Assignment - JS program -9(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 14
+	Observables
+	Programs
+	Interview Questions
+	Assignment - JS program -10(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test 
+
+Day 15
+	BOM - Browser Object Model- location,screen, History, navigator
+	Programs
+	Interview Questions
+	Assignment - JS program -11(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 16
+	AJAX - XMLHttpRequest, fetch
+	Programs
+	Interview Questions
+	Assignment - JS program -12(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 17
+        React Introduction
+	Programs
+	Interview Questions
+	Assignment - JS program -13(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+Day 18
+        functional Components,
+	Programs
+	Interview Questions
+	Assignment - JS program -14(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 19
+        useState
+	Programs
+	Interview Questions
+	Assignment - JS program -15(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test 
+
+Day 20
+        useEffect (Mounting, updating , unmountng)
+	Programs
+	Interview Questions
+	Assignment - JS program -16(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+Day 21
+
+        Communication b/w components
+	Programs
+	Interview Questions
+	Assignment - JS program -17(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 22
+
+        useContext, useRef
+	Programs
+	Interview Questions
+	Assignment - JS program -18(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 23
+
+        List and Keys
+	Programs
+	Interview Questions
+	Assignment - JS program -19(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+
+Day 24
+
+        Reusable components
+	Programs
+	Interview Questions
+	Assignment - JS program -20(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+
+Day 25
+
+        AJAX
+	Programs
+	Interview Questions
+	Assignment - JS program -21(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 26
+
+        HOC,HOF, useMemo, useCallback, useTransistion, custom hooks.
+	Programs
+	Interview Questions
+	Assignment - JS program -22(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 27
+
+        Redux
+	Programs
+	Interview Questions
+	Assignment - JS program -23(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 28
+
+        useReducer
+	Programs
+	Interview Questions
+	Assignment - JS program -24(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 29
+        Redux vs useReducer
+	Programs
+	Interview Questions
+	Assignment - JS program -25(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 30 
+        JEST/RTL
+	Programs
+	Interview Questions
+	Assignment - JS program -26(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 31
+        PlayWright
+	Programs
+	Interview Questions
+	Assignment - JS program -27(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 32:
+	Create one web applicaiton using React - animation
+        Programs
+	Interview Questions
+	Assignment - JS program -28(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+Day 33:
+	Work on above application
+	Assignment - JS program -29(write/todo)
+	Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+Day 34:
+	Complete above application
+	Deploy to vercel
+        Assignment - JS program - 30
+        Notes - 
+	Write HTML, CSS, Bootstrap,JavaScript Test
+
+
+Next 30days  program 
+===============================================
+
+1. Every day - 1 react progam write and 1 react program to do
+
+2. take 3 days to do 
+
+Documentation
+
+Figma
+
+JIRA
+
+GIT
+
+
+3. Environment Creation (take 6 days)
+
+client App - react with next -  1 day
+
+server App - node with express  - 3 days
+
+Database -  MongoDB - 2 day
+
+4. PROJECT work (take 20 days)
+
+Client app -react
+Server app -node
+Database - mongo DB
+Test cases - Jest / RTL
+Automation  - PlayWright
+Deployment - 
+	client-vercel
+	server- AWS
+
+5. Graph QL (take 3 days)
+
+DML operation
+	client- react with GraphQL(apollo Client, react query, axios)
+	server - node with GrahpQL
+	Database - MongoDB
+
+=================================================
+
+Softwares need to install:
+
+1. Visual Studio Code : https://code.visualstudio.com/
+2. git : https://git-scm.com/downloads
+3. DesktopGit : https://desktop.github.com/
+4. MongoDB : https://www.mongodb.com/try/download/community
+5. MongoDB compass : https://www.mongodb.com/products/compass
+6. Node s/w or nvm : https://nodejs.org/en/download or https://github.com/coreybutler/nvmwindows/releases
+7. postman : https://www.postman.com/downloads/
+
+===================================================
+Create Accounts:
+
+1. https://github.com/
+2. https://www.vercel.com/
+3. https://mongodb.com/
+4. https://aws.amazon.com/ 
+5. https://www.npmjs.com/
+
+===================================================
+Learning Websites:
+
+1. www.uijavakit.com
+2. www.kalamschools.com
+3. www.yourpost.in
+4. www.writetest.in
+
+===================================================
+Email:
+
+chenchala.srinu@gmail.com
+
+
+
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

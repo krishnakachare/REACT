@@ -1,0 +1,209 @@
+Full stack React Course Content (120 days):  
+============================================
+
+HTML 
+====
+1. Why do we go for HTML?
+2. Inline vs Block-level elements
+3. Attributes
+4. Input controls
+5. Table
+6. List
+7. Developer console window (elements, console, source, network, application)
+8. Elements Behaviour
+
+CSS
+===
+1. Why do we go for CSS
+2. How many ways can we apply CSS ?
+3. Selectors
+4. Media queries
+5. Positions
+6. Box model
+7. Flex
+8. Grid
+
+Bootstrap:
+==========
+1. Setup
+2. Utilities
+3. Components
+4. GridSystem
+
+HTML 5:
+=======
+
+1. Semantic Elements
+2. Media tags(Audio and Video)
+3. Canvas
+4. Geolocation API
+5. Browser Storages
+6. web workers
+7. Drag and Drop
+8. web sockets
+9. Form enhancements(email, URL, and more, placeholder text, required fields feature, validations)
+10.Responsive Images.
+
+CSS3:
+====
+
+1. Opacity
+2. Selectors
+3. Animations
+4. Multi background colors
+5. Rounded Corners
+6. Transforming
+7. Transistion
+8. shadowing
+9. word wrapping
+10.Multiple Column layouts
+
+JavaScript:
+==========
+1. Introduction
+2. Variables
+3. Functions
+4. Array Methods
+5. String Methods
+6. JSON Object
+7. Get Reference
+8. Apply Styles
+9. Events
+10. Debouncing
+11. Throttling
+12. Async vs defer
+13. OOPS
+14. Set Timeout, clearTimeout
+15. Set Interval, clearInterval
+16. Browser Storages
+17. BOM
+18. Call, apply, bind
+19. Closure
+20. Event Bubbling
+21. Event Capturing
+22. Exception Handling
+23. Callbacks
+24. Promises
+25. Async Await
+26. AJAX
+27. Async functions
+28. Arrow functions
+29. Spread operator vs Rest Parameter
+30. Array and Object destructuring.
+31. Event Looping
+32. Generators
+33. Regular Expressions
+34. var, let , const
+35. Variable and Method Hoisting.
+36. Execution Context
+37. Hoisting
+38. Currying
+39. Document vs window
+40. TypeScript
+
+React:
+====
+
+1. Why do we go for React ?
+2. How to prepare the templates in react (functional components) and JSX
+3. How to handle the events(click, focus, blur ...) ?
+4. How to take the data from inputControls(textbox,password,radio,checkbox,textarea,fileupload,dropdown)?
+5. State vs Props
+6. State value update, prop value update
+7. Communication b/w components (parent-child , child-parent)
+8. Context API
+9. How to handle AJAX(XMLHttpRequest, fetch, axios)
+10. Lifecycle phases
+11. Lists and keys
+12. Reusable components
+13. How to apply styles dynamically (inline, class)
+14. Handle Routing in React
+15. Conditional Rendering
+16. Integrate bootstrap, react-bootstrap, material UI design
+17. Module CSS, styled-components, SASS.
+18. DefaultProps , PropTypes
+19. Higher Order Components
+20. React Testing(jest+RTL)
+21. PlayWright(JavaScript Automation Testing)
+22. Create and publish your own lib in npmjs.
+
+React Hooks:
+=========
+
+1. useState
+2. useEffect
+3. useRef
+4. useContext
+5. useReducer
+6. useMemo
+7. useCallback
+8. useTransistion
+9. Custom Hook
+
+Build and Deploy:
+=================
+Vercel
+
+Version Control:
+===============
+GIT
+
+Backend:
+=======
+1. node js
+
+DataBase:
+========
+1. MongoDB
+
+Redux(state management at application level):
+=============================
+1. How to implement Redux in your React Application ?
+2. actions, reducers, store
+
+Data Visualization:
+==================
+1. Visualization(charts)
+
+EtoE Application(DML operations(login, insert,update,delete, retrieve)) :
+=======================================================================
+1. client(React +Redux) + Server(node with express ) + MongoDB
+
+JWT:
+====
+1. client(React ) + Server(node with express )
+
+Others:
+======
+1. Next JS --
+2. React Native --
+3. React With Typescript --
+
+Softwares need to install:
+=================
+1. Visual Studio Code : https://code.visualstudio.com/
+2. git : https://git-scm.com/downloads
+3. DesktopGit : https://desktop.github.com/
+4. MongoDB : https://www.mongodb.com/try/download/community
+5. MongoDB compass : https://www.mongodb.com/products/compass
+6. Node s/w or nvm : https://nodejs.org/en/download or https://github.com/coreybutler/nvmwindows/releases
+7. postman : https://www.postman.com/downloads/
+
+Create Accounts:
+=================
+1. https://github.com/
+2. https://www.vercel.com/
+3. https://mongodb.com/
+4. https://aws.amazon.com/ 
+5. https://www.npmjs.com/
+
+Learning Websites:
+==================
+1. www.uijavakit.com
+2. www.kalamschools.com
+3. www.yourpost.in
+4. www.writetest.in
+
+Email:
+=====
+chenchala.srinu@gmail.com
