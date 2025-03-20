@@ -1,0 +1,66 @@
+Junior Front-End Developer
+===========================
+Q1. Describe the process of converting wireframes into responsive web interfaces while ensuring cross-browser compatibility and adherence to W3C standards.
+Q2. Explain the version control system and branching strategies you might employ in Bitbucket for a team-based web development project.
+Q3. Can you outline the steps involved in setting up an auto-scaling architecture for a web application using AWS services?
+Q4. How would you approach database indexing and what considerations are important when deciding which columns to index?
+Q5. Could you explain the concept of CSS specificity and how it impacts the styling of HTML elements?
+
+
+
+Senior Front-End Developer
+===========================
+Q1. Discuss a challenging scenario where balancing design aesthetics with functionality posed a significant hurdle in your previous UI design projects. How did you navigate this challenge, and what strategies did you employ to achieve a harmonious balance between the two?
+Q2. Describe a time when you had to integrate complex UI elements across multiple platforms (web and mobile) while ensuring a consistent user experience. How did you approach this integration, and what considerations were vital in achieving coherence across these diverse interfaces?
+Q3. Explain how you've influenced a development team to adopt or adapt to new UI technologies or methodologies in a project. What strategies did you use to communicate the value and ensure a smooth transition, considering the team's existing practices and skill sets?
+Q4. In your experience, how do you ensure code review processes effectively maintain UI design and coding standards? Can you detail a case where your code review significantly improved the overall UI quality and adherence to design principles?
+Q5. UI best practices continuously evolve. Could you discuss a recent emerging UI technology or trend that you found particularly intriguing or promising? How have you explored or implemented this within your design and development work, and what potential advantages or challenges does it present in the context of your projects?
+
+Q1. You are tasked with creating a responsive webpage for an e-commerce site. How would you structure the HTML to ensure accessibility and semantic markup? Additionally, explain how you would implement responsive design using CSS for various screen sizes.
+Q2. Create a simple HTML form with fields for name, email, and a submit button. Style the form using CSS to provide a visually appealing and user-friendly interface.
+Q3. Imagine you are building a RESTful API using Node.js for a blog application. How would you structure the routes, handle CRUD operations, and ensure security measures such as input validation and authentication?
+Q4. You're working on a React application for a real-time chat feature. How would you manage state, handle real-time updates, and ensure a smooth user experience? Consider components, state management libraries, and communication with a backend.
+Q5. You are responsible for designing a database for an online library system. How would you structure the tables to handle books, users, and borrowing history efficiently? Consider normalization, relationships, and indexing.
+Q6. You are building a system that needs to efficiently search and retrieve data. Describe a situation where you would choose a hash table over a binary search tree, and vice versa. What factors influence your decision?
+Q7. Implement a function in your language of choice that checks if a given string is a palindrome. Optimize it for both time and space complexity.
+
+
+
+UI Architect
+============
+Q1. Discuss the intersection of design aesthetics and functional UI implementation. How do you approach balancing these aspects to create an optimal user experience, considering various devices and platforms?
+Q2. Can you elaborate on your experience in guiding development teams to adhere to established UI best practices? Share a specific instance where your guidance significantly improved the final UI outcome of a project.
+Q3. How do you stay current with emerging UI technologies and incorporate them into your work? Could you provide an example of a recent technology or trend you've integrated into a project and how it impacted the user interface positively?
+Q4. In your opinion, what are the primary challenges faced when reviewing code for UI adherence? How do you ensure that code aligns with both design specifications and coding standards, especially in collaborative development environments?
+Q5. Describe a scenario where you faced conflicting project requirements or design choices between the UI team and developers. How did you resolve these conflicts to achieve a cohesive and effective user interface without compromising functionality or design principles?
+
+Q1. Technologies and skills set used in the current project?
+Q2. What frameworks have you worked with?
+Q3. Can you discuss a project where you applied your strong expertise in React JS and Next JS to design and implement a scalable and high-performance frontend architecture? How did you utilize server-side rendering (SSR) for performance optimization, and what were the outcomes?
+Q4. In projects involving complex UI structures, how have you effectively implemented state management using Redux? Can you provide an example where your approach to state management contributed to a more maintainable and efficient codebase?
+Q5. Describe your experience with code versioning and repository management using Bitbucket. How do you ensure code quality, collaboration, and effective version control within a development team? Can you share a scenario where your approach to repository management was particularly beneficial?
+Q6. Discuss your proficiency in UI testing using tools like Postman. Can you provide an example where you successfully integrated frontend components with backend services, ensuring seamless communication and data exchange?
+Q7. In a fast-paced and dynamic environment, how do you manage competing priorities and deliver quality frontend solutions within tight timelines? Share an experience where your ability to work effectively in a dynamic setting was crucial to the success of a project.
+
+
+Important Questions
+===================
+1. How can you decide to use Angular, React, or Vue based on the project size?
+2. What are the main differences between SPA and SSR
+3. Explain the sense of using several .env files. What types of environments do you know.
+4. Can you describe your experience with debugging tools and techniques for front end development?
+5. How do you ensure cross-browser compatibility for your front end applications?
+6. Can you describe the process for developing a user interface from scratch?
+7. How would you optimize a website's performance?
+   minifying assets, using CDNs, optimizing images, lazy-loading content, implementing caching, bundling and code-splitting, and leveraging browser caching.
+8. What is the importance of progressive web apps (PWAs) in frontend development?
+9. How do you handle frontend security concerns, such as XSS and CSRF attacks?
+10. What are some common performance bottlenecks in frontend applications, and how do you address them?
+    unoptimized images, render-blocking resources, excessive DOM manipulations, and inefficient JavaScript execution.
+
+https://anywhere.epam.com/en/blog/senior-front-end-developer-interview-questions
+https://www.linkedin.com/pulse/100-interview-questions-senior-frontend-engineer-osama-soliman-
+
+
+
+
