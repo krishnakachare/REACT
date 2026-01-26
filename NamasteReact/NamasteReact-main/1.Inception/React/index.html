@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Inception React</title>
+  </head>
+  <body>
+    <h1 id="top">Top of Root wouldn't get replaced.</h1>
+    <!-- Since React is a library which can also be used just in a portion of the app. -->
+    <div id="root">
+      <h1 id="replace">
+        This text will get replaced by content created by using React
+      </h1>
+    </div>
+    <h1 id="bottom">Bottom of Root wouldn't get replaced.</h1>
+
+    <!-- The below CDN link consists core react code -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <!-- The below CDN link consists code to modify the dom -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+<!-- 1. The order of script files matters, whether CDN links or just importing the index.js link. -->
+
+<!-- 2. We have two seperate CDN files because we need something so that React is rendered on browsers (React DOM), mobile phones (React Native), etc. -->

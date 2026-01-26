@@ -1,0 +1,63 @@
+{
+  "id": "946254",
+  "name": "MOJO Pizza - 2X Toppings",
+  "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/12/1acc2194-a483-4d5c-a17d-3e5f52e623a3_946254.jpg",
+  "locality": "KYD Street",
+  "areaName": "Chowringhee Mansions",
+  "costForTwo": "₹250 for two",
+  "cuisines": ["Pizzas", "Italian", "Fast Food", "Desserts"],
+  "avgRating": 4.6,
+  "parentId": "11329",
+  "avgRatingString": "4.6",
+  "totalRatingsString": "214",
+  "sla": {
+    "deliveryTime": 25,
+    "lastMileTravel": 2.8,
+    "serviceability": "SERVICEABLE",
+    "slaString": "20-30 mins",
+    "lastMileTravelString": "2.8 km",
+    "iconType": "ICON_TYPE_EMPTY"
+  },
+  "availability": {
+    "nextCloseTime": "2025-03-22 02:00:00",
+    "opened": true
+  },
+  "badges": {},
+  "isOpen": true,
+  "type": "F",
+  "badgesV2": {
+    "entityBadges": {
+      "imageBased": {},
+      "textBased": {},
+      "textExtendedBadges": {}
+    }
+  },
+  "aggregatedDiscountInfoV3": {
+    "header": "₹100 OFF",
+    "subHeader": "ABOVE ₹299",
+    "discountTag": "FLAT DEAL"
+  },
+  "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+  },
+  "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+      "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+      "lottie": {},
+      "video": {}
+    }
+  },
+  "reviewsSummary": {},
+  "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+  "restaurantOfferPresentationInfo": {},
+  "externalRatings": {
+    "aggregatedRating": {
+      "rating": "--"
+    }
+  },
+  "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+}
